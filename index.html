@@ -17,7 +17,7 @@
       <main class="main">
         <section class="profile">
           <div class="profile__common">
-            <div class="profile__avatar"></div>
+            <img class="profile__avatar" src="images/jak.png" alt="Жак-Ив Кусто"/>
             <div class="profile__info">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
               <button class="profile__edit-button" type="button"></button>
@@ -36,7 +36,7 @@
               </div>
             </li>
             <li class="elements__item element">
-              <img class="element__image" src="images/goraelbrus.png"alt="Гора Эльбрус"/>
+              <img class="element__image" src="images/goraelbrus.png" alt="Гора Эльбрус"/>
               <div class="element__info">
                 <h2 class="element__title">Гора Эльбрус</h2>
                 <button class="element__like" type="button"></button>
@@ -66,7 +66,7 @@
             <li class="elements__item element">
               <img class="element__image" src="images/karachayevsk.jpg" alt="Карачаево-Ч..."/>
               <div class="element__info">
-                <h2 class="element__title">Карачаево-Ч...</h2>
+                <h2 class="element__title">Карачаевск</h2>
                 <button class="element__like" type="button"></button>
               </div>
             </li>
@@ -79,20 +79,20 @@
     </div>
     <div class="popup">
       <div class="popup__container">
-        <form class="popup__form" name="edittheform" method="POST">
-          <h3 class="popup__title">Редактировать профиль</h3>
+      <h3 class="popup__title">Редактировать профиль</h3>
+          <form class="popup__form" name="edittheform" method="POST">
           <input
             class="popup__input"
             type="text"
             name="title"
-            placeholder="Жак-Ив Кусто"
+            placeholder="Укажите имя"
             value=""
           />
           <input
             class="popup__input"
             type="text"
             name="subtitle"
-            placeholder="Исследователь океана"
+            placeholder="Введите адрес"
             value=""
           />
           <button class="popup__button" type="submit">Сохранить</button>
