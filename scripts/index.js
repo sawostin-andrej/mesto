@@ -9,8 +9,8 @@ const editButton = profile.querySelector(".profile__edit-button");
 const popupbutton = document.querySelector(".popup__button");
 
 function togglePopup() {
-  popup.classList.toggle("popup_open");
-  if (popup.classList.contains("popup_open")) {
+  popup.classList.toggle("popup_opened");
+  if (popup.classList.contains("popup_opened")) {
     inputname.value = profiletitle.textContent;
     inputabout.value = profilesubtitle.textContent;
   }

@@ -19,7 +19,7 @@
 
 * Figma
 * Картинки
-* Ссылка на Пракетическую работу №4: https://sawostin-andrej.github.io/mesto/
+* Ссылка на Практическую работу №4: https://sawostin-andrej.github.io/mesto/
 
 **Figma**
 
