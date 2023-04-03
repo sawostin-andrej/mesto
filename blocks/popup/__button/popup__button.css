@@ -11,10 +11,11 @@
   font-style: normal;
   font-weight: normal;
   text-align: center;
+  margin-top: 48px;
 }
 
 .popup__button:hover {
-  background-color: rgba(0, 0, 0, 0.8 );
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 720px) {
@@ -22,6 +23,5 @@
     height: 46px;
     font-size: 14px;
     line-height: 17px;
-    margin-top: 45px;
   }
 }
