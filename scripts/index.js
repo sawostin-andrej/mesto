@@ -53,7 +53,7 @@ const cardItemTemplate = document.querySelector(".card-template").content;
 const elementContainer = document.querySelector(".elements");
 
 function openPopup(popup) {
-  popup.classList.toggle("popup_opened");
+  popup.classList.add("popup_opened");
 }
 
 const closePopup = () => {
@@ -70,7 +70,7 @@ const openAddPopup = () => {
   openPopup(popupAdd);
 };
 
-function formProfileSubmit(event) {
+function handleProfileFormSubmit(event) {
   event.preventDefault();
   profiletitle.textContent = inputname.value;
   profilesubtitle.textContent = inputabout.value;
@@ -94,6 +94,7 @@ const createCard = (nameCard, urlCard) => {
     openPopup(popupWrapImage);
     popupImage.src = imageElement.src;
     popupImageTitle.textContent = imageElement.alt;
+    popupImage.alt = imageElement.alt;
   });
 
   deleteIcon.addEventListener("click", function () {
@@ -137,6 +138,6 @@ popupAddButton.addEventListener("click", openAddPopup);
 popupCloseButtonAll.forEach((button) => {
   button.addEventListener("click", closePopup);
 });
-popupProfile.addEventListener("submit", formProfileSubmit);
+popupProfile.addEventListener("submit", handleProfileFormSubmit);
 
 editButton.addEventListener("click", openProfilePopup);
