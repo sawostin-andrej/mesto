@@ -10,4 +10,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
+  z-index: 5;
+  transition: all 1s ease 0s;
 }
