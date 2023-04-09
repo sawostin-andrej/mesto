@@ -57,7 +57,10 @@ function openPopup(popup) {
 }
 
 const closePopup = () => {
-  document.querySelector(".popup_opened").classList.remove("popup_opened");
+  const popupOpened = document.querySelector(".popup_opened");
+  if (popupOpened) { // проверяем, что есть открытый попап
+    popupOpened.classList.remove("popup_opened");
+  }
 };
 
 function openProfilePopup() {
