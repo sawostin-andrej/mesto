@@ -63,6 +63,33 @@ const closePopup = () => {
   }
 };
 
+//Открытие попапов
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  //закрытие попапов нажатием на Esc
+  document.addEventListener('keydown', closePopupKeyEsc);
+ 
+};
+
+//Закрытие попапов через Esc
+function closePopupKeyEsc (evt) {
+  if (evt.key === 'Escape') {
+    const keyEsc = document.querySelector('.popup_opened');
+    closePopup(keyEsc);
+  }
+};
+
+//Закрытие попап кликом рядом с ним
+const popups = document.querySelectorAll('.popup');
+
+popups.forEach(popup => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+  })
+});
+
 function openProfilePopup() {
   inputname.value = profiletitle.textContent;
   inputabout.value = profilesubtitle.textContent;
