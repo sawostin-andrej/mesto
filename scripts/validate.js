@@ -30,7 +30,7 @@ const hasInvalidInput = inputList => {
 }
 
 //функция переключения кнопки
-const toggleBtnDisabled = (inputList, buttonElement, object) => {
+const toggleButtonState = (inputList, buttonElement, object) => {
   if (hasInvalidInput(inputList, object)) {
     buttonElement.classList.add(object.inactiveButtonClass);
     buttonElement.setAttribute('disabled', '');
@@ -44,12 +44,12 @@ const toggleBtnDisabled = (inputList, buttonElement, object) => {
 const setEventListeners = (formElement, object) => {
   const inputList = Array.from(formElement.querySelectorAll(object.inputSelector));
   const buttonElement = formElement.querySelector(object.submitButtonSelector);
-  toggleBtnDisabled(inputList, buttonElement, object);
+  toggleButtonState(inputList, buttonElement, object);
 
   inputList.forEach((input) => {
     input.addEventListener('input', function () {
       checkInputValidity(formElement, input, object)
-      toggleBtnDisabled(inputList, buttonElement, object);
+      toggleButtonState(inputList, buttonElement, object);
     })
   })
 }
