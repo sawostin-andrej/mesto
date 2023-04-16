@@ -1,10 +1,11 @@
+//функция ошибки
+//показываем
 const showInputError = (formSelector, inputSelector, errorMessage, object) => {
   const errorElement = formSelector.querySelector(`#${inputSelector.id}-error`);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(object.errorClass);
 }
-
-//функция скрытия ошибки
+//скрываем
 const hideInputError = (formSelector, inputSelector, object) => {
   const errorElement = formSelector.querySelector(`#${inputSelector.id}-error`);
   errorElement.classList.remove(object.errorClass);
@@ -21,66 +22,54 @@ const checkInputValidity = (formSelector, inputSelector, object) => {
   }
 }
 
-//функция проверки валидности поля
+//функция поиска невалидного поля
 const hasInvalidInput = inputList => {
   return inputList.some((inputSelector) => {
     return !inputSelector.validity.valid;
   });
 }
 
-//функция переключения кнопки в неактивный режим
-const enableButton = (button, {inactiveButtonClass}) => {
-  button.classList.remove(inactiveButtonClass);
-  button.removeAttribute('disabled', '');
-}
+//функция переключения кнопки
+const toggleBtnDisabled = (inputList, buttonElement, object) => {
+  if (hasInvalidInput(inputList, object)) {
+    buttonElement.classList.add(object.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', '');
+  } else {
+    buttonElement.classList.remove(object.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled', '');
+  }
+};
 
-const disableButton = (button, {inactiveButtonClass}) => {
-  button.classList.add(inactiveButtonClass);
-  button.setAttribute('disabled', '');
-}
-
-
-//Функция события форм
+//слушатель
 const setEventListeners = (formElement, object) => {
   const inputList = Array.from(formElement.querySelectorAll(object.inputSelector));
   const buttonElement = formElement.querySelector(object.submitButtonSelector);
+  toggleBtnDisabled(inputList, buttonElement, object);
 
- 
-
-  
-  inputList.forEach(input => {
-     disableButton(buttonElement, object)
-    input.addEventListener('input', () => {
+  inputList.forEach((input) => {
+    input.addEventListener('input', function () {
       checkInputValidity(formElement, input, object)
-        if (hasInvalidInput(inputList)) {
-          disableButton(buttonElement, object)
-        } else {
-          enableButton(buttonElement, object)  
-      }
+      toggleBtnDisabled(inputList, buttonElement, object);
     })
   })
 }
 
 //функция валидации
 const enableValidation = (object) => {
+  //собираем все формочки в массив
   const formList = Array.from(document.querySelectorAll(object.formSelector));
+  //проходимся по массиву и навешиваем слушатели
   formList.forEach((item) => {
-    item.addEventListener('submit', function(evt){
-      evt.preventDefault();
-    });
-    formList.forEach((item) => {
       setEventListeners(item, object);
-    });
   });
 }
 
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
+//подключаем валидацию
 enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_invalid',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  formSelector: '.popup__form', //формы
+  inputSelector: '.popup__input', //поля ввода
+  submitButtonSelector: '.popup__button', //кнопка сохранить
+  inactiveButtonClass: 'popup__button_invalid', //неактивная кнопка сохранить
+  inputErrorClass: 'popup__input_type_error', //поле ввода с ошибкой
+  errorClass: 'popup__error_visible' //span с ошибкой
 });
