@@ -37,6 +37,16 @@ function openProfilePopup() {
   openPopup(popupProfile);
 }
 
+const openAddPopup = () => { 
+  openPopup(popupAdd); 
+  const input = popupAdd.querySelector('.popup__input')
+  const button = popupAdd.querySelector('.popup__button')
+  if (!input.value) {
+    button.classList.add('popup__button_invalid')
+    button.setAttribute('disabled', '')
+  }
+};
+
 //функции закрытия pop-ups
 //по клику на кнопку
 function closePopup(popup) {
@@ -129,7 +139,7 @@ formElementAdd.addEventListener("submit", handleAddCardFormSubmit);
 popupProfile.addEventListener("submit", handleProfileFormSubmit);
 //открываем
 editButton.addEventListener("click", openProfilePopup);
-popupAddButton.addEventListener("click", () => openPopup(popupAdd));
+popupAddButton.addEventListener("click", openAddPopup);
 //закрываем
 profileCloseBtn.addEventListener("click", () => closePopup(popupProfile));
 addCloseBtn.addEventListener("click", () => closePopup(popupAdd));
