@@ -10,6 +10,7 @@ const profileCloseBtn = popupProfile.querySelector(".popup__close")
 // переменные для pop-up добавления карточки
 const popupAdd = document.querySelector(".popup_type_add");
 const popupAddButton = document.querySelector(".profile__add-button");
+const buttonSubmitAdd = popupAdd.querySelector('.popup__button')
 const formElementAdd = popupAdd.querySelector("form[name='addCard']");
 const nameCardInput = popupAdd.querySelector("input[name='card-title']");
 const urlCardInput = popupAdd.querySelector("input[name='card-link']");
@@ -22,6 +23,7 @@ const imageCloseBtn = popupWrapImage.querySelector(".popup__close")
 // переменные карточек
 const cardItemTemplate = document.querySelector(".card-template").content;
 const elementContainer = document.querySelector(".elements");
+
 
 //Открытие pop-up
 function openPopup(popup) {
@@ -39,11 +41,9 @@ function openProfilePopup() {
 
 const openAddPopup = () => { 
   openPopup(popupAdd); 
-  const input = popupAdd.querySelector('.popup__input')
-  const button = popupAdd.querySelector('.popup__button')
-  if (!input.value) {
-    button.classList.add('popup__button_invalid')
-    button.setAttribute('disabled', '')
+  if (!nameCardInput.value && urlCardInput.value) {
+    buttonSubmitAdd.classList.add('popup__button_invalid')
+    buttonSubmitAdd.setAttribute('disabled', '')
   }
 };
 
