@@ -1,3 +1,25 @@
+import FormValidator from "./FormValidator.js";
+import initialCards from "./cardsData.js";
+// import Card from "./Сard.js";
+
+const formNew = document.querySelector('.popup__form_new')
+const formEdit = document.querySelector('.popup__form_edit')
+console.log({formNew, formEdit})
+const enableValidation = {
+  
+  inputSelector: '.popup__input', //поля ввода
+  submitButtonSelector: '.popup__button', //кнопка сохранить
+  inactiveButtonClass: 'popup__button_invalid', //неактивная кнопка сохранить
+  inputErrorClass: 'popup__input_type_error', //поле ввода с ошибкой
+  errorClass: 'popup__error_visible' //span с ошибкой
+}
+
+const formNewInstance = new FormValidator(formNew, enableValidation)//создаем экземпляр класса
+const formEditInstance = new FormValidator(formEdit, enableValidation)//создаем экземпляр класса
+
+formEditInstance.enableValidation()
+formNewInstance.enableValidation()
+
 // переменные pop-up создание профиля
 const popupProfile = document.querySelector(".popup_type_profile");
 const inputName = popupProfile.querySelector("input[name='title']");
