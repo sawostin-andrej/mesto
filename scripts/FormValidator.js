@@ -45,16 +45,23 @@ class FormValidator {
   }
 
   _checkInputValidity(input) {//проверяем правильность введенных данных
-    const inputerrors = this._form.querySelector(`#${input.id}-error`);
+
     if (input.checkValidity()) {
-      input.classList.remove(this._inputErrorClass); 
-      inputerrors.classList.remove(this._errorClass);
-      inputerrors.textContent = "";
+      this._hideInputError(input)
     } else {
-      input.classList.add(this._inputErrorClass);
-      inputerrors.textContent = input.errorMessage;
-      inputerrors.classList.add(this._errorClass);
+      this._showInputError(input)
     }
+    
+  }
+
+  _hideInputError(input) {
+    const errorElement = document.querySelector(`#${input.id}-error`);  
+    errorElement.textContent = '';
+  }
+
+  _showInputError(input) {
+    const errorElement = document.querySelector(`#${input.id}-error`);
+    errorElement.textContent = input.validationMessage;
   }
 
   _enableButton() {
