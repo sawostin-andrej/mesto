@@ -11,6 +11,7 @@
   line-height: 17px;
   color: #000000;
   padding-bottom: 13px;
+  outline: none;
 }
 
 .popup__input:invalid {

@@ -25,51 +25,40 @@
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
-
-      <section class="elements"></section>
+      <section class="elements"></section> <!--контейнер добавления карточек-->
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
-    <div class="popup popup_type_profile">
+    <section class="popup popup_type_profile">  <!--попап кнопки создания профиля-->
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form popup__form_edit" name="edittheform" method="POST"
-        novalidate>
-          <input
-            class="popup__input"
-            type="text"
-            name="title"
-            placeholder="Имя"
-            value=""
-            minlength="2" maxlength="40"
-            required
-            id="name-input"
-          />
+        <form class="popup__form popup__form_edit" name="edittheform" method="POST" novalidate>
+          <input class="popup__input" type="text" name="title" placeholder="Имя" value="" minlength="2" maxlength="40" required id="name-input"/>
           <span class='popup__error' id='name-input-error'></span>
-          <input
-            class="popup__input"
-            type="text"
-            name="subtitle"
-            placeholder="О себе"
-            value=""
-            minlength="2" maxlength="200"
-            required
-            id="text-input"
-          />
+          <input class="popup__input" type="text" name="subtitle" placeholder="О себе" value="" minlength="2" maxlength="200" required id="text-input"/>
           <span class='popup__error' id='text-input-error'></span>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
         <button class="popup__close" type="button"></button>
       </div>
-    </div>
-    <template class="card-template">
-      <article class="elements__item element">
-        <img
-          src="./images/delet.svg"
-          alt="Удалить"
-          class="elements__delete-btn"
-        />
+    </section>    
+    <section class="popup popup_type_add"> <!--попап кнопки добавления карточки-->
+      <div class="popup__container">
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup__form popup__form_new" name="addCard" action="#" method="POST">
+          <input class="popup__input popup__input_name" type="text" name="card-title" placeholder="Название" value="" minlength="2" maxlength="30" required id="title-input"/>
+          <span class="popup__error" id="title-input-error"></span>
+          <input class="popup__input" type="url" name="card-link" placeholder="Ссылка на картинку" value="" required id="link-input"/>
+          <span class="popup__error" id="link-input-error"></span>
+          <button class="popup__button" type="submit">Создать</button>
+        </form>
+        <button class="popup__close" type="button"></button>
+      </div>
+    </section>
+    <template class="card-template"> 
+      <article class="elements__item element"> <!--шаблон добавления карточки-->
+        <img src="./images/delet.svg" alt="Удалить" class="elements__delete-btn"/>
         <img class="element__image" src="#" alt="#"/>
         <div class="element__info">
           <h2 class="element__title"></h2>
@@ -77,43 +66,13 @@
         </div>
       </article>
     </template>
-    <div class="popup popup_type_add">
-      <div class="popup__container">
-        <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form popup__form_new" name="addCard" action="#" method="POST">
-          <input
-            class="popup__input"
-            type="text"
-            name="card-title"
-            placeholder="Название"
-            value=""
-            minlength="2" maxlength="30"
-            required
-            id="title-input"
-          />
-          <span class="popup__error" id="title-input-error"></span>
-          <input
-            class="popup__input"
-            type="url"
-            name="card-link"
-            placeholder="Ссылка на картинку"
-            value=""
-            required
-            id="link-input"
-          />
-          <span class="popup__error" id="link-input-error"></span>
-          <button class="popup__button" type="submit">Создать</button>
-        </form>
-        <button class="popup__close" type="button"></button>
-      </div>
-    </div>
-    <div class="popup popup_type_image">
+    <section class="popup popup_type_image"> <!--попап открытия большой картинки-->
       <div class="popup__image-container">
         <img src="#" alt="#" class="popup__image" />
         <p class="popup__image-title"></p>
         <button type="button" class="popup__close popup-close"></button>
       </div>
-    </div>
+    </section>
     <script type="module" src="scripts/index.js"></script>
   </body>
 </html>

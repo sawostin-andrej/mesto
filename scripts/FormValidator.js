@@ -18,7 +18,8 @@ class FormValidator {
     this._errorClass = errorClass; //Spin с ошибкой
   }
 
-  enableValidation() {// подключаем валидацию
+  enableValidation() {
+    // подключаем валидацию
     this._inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     ); //форм
@@ -26,37 +27,41 @@ class FormValidator {
     this._setEventListeners(); //подключаем слушатель
   }
 
-  _setEventListeners() {//слушатель
-    this.disableButton();//кнопка выключена
-    this._inputList.forEach((input) => {//пройти по полям ввода формы
-      input.addEventListener("input", () => {//добавить им слушатель
-        this._checkInputValidity(input);//проверяем правильность введенных данных
+  _setEventListeners() {
+    //слушатель
+    this.disableButton(); //кнопка выключена
+    this._inputList.forEach((input) => {
+      //пройти по полям ввода формы
+      input.addEventListener("input", () => {
+        //добавить им слушатель
+        this._checkInputValidity(input); //проверяем правильность введенных данных
         if (this._hasInvalidInput()) {
-          this.disableButton();//если данные веедены неверно выключить кнопку
+          this.disableButton(); //если данные веедены неверно выключить кнопку
         } else {
-          this._enableButton();//верно включить кнопку
+          this._enableButton(); //верно включить кнопку
         }
       });
     });
   }
 
-  _hasInvalidInput() {//поле имеет неверный ввод
-    return this._inputList.some((item) => !item.validity.valid);//вернуть невалидные поля
+  _hasInvalidInput() {
+    //поле имеет неверный ввод
+    return this._inputList.some((item) => !item.validity.valid); //вернуть невалидные поля
   }
 
-  _checkInputValidity(input) {//проверяем правильность введенных данных
+  _checkInputValidity(input) {
+    //проверяем правильность введенных данных
 
     if (input.checkValidity()) {
-      this._hideInputError(input)
+      this._hideInputError(input);
     } else {
-      this._showInputError(input)
+      this._showInputError(input);
     }
-    
   }
 
   _hideInputError(input) {
-    const errorElement = document.querySelector(`#${input.id}-error`);  
-    errorElement.textContent = '';
+    const errorElement = document.querySelector(`#${input.id}-error`);
+    errorElement.textContent = "";
   }
 
   _showInputError(input) {
@@ -70,7 +75,6 @@ class FormValidator {
   }
 
   disableButton() {
-    console.log('hu')
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.setAttribute("disabled", true);
   }
