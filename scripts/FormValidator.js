@@ -34,7 +34,8 @@ class FormValidator {
       //пройти по полям ввода формы
       input.addEventListener("input", () => {
         //добавить им слушатель
-        this._checkInputValidity(input); //проверяем правильность введенных данных
+        this._checkInputValidity(input);
+        //проверяем правильность введенных данных
         if (this._hasInvalidInput()) {
           this.disableButton(); //если данные веедены неверно выключить кнопку
         } else {
@@ -59,14 +60,18 @@ class FormValidator {
     }
   }
 
-  _hideInputError(input) {
-    const errorElement = document.querySelector(`#${input.id}-error`);
-    errorElement.textContent = "";
-  }
-
   _showInputError(input) {
+    //показать ошибку
+    input.classList.add(this._inputErrorClass);
     const errorElement = document.querySelector(`#${input.id}-error`);
     errorElement.textContent = input.validationMessage;
+  }
+
+  _hideInputError(input) {
+    //скрыть ошибку
+    const errorElement = document.querySelector(`#${input.id}-error`);
+    errorElement.textContent = "";
+    input.classList.remove(this._inputErrorClass);
   }
 
   _enableButton() {

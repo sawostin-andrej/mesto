@@ -1,14 +1,7 @@
 import FormValidator from "./FormValidator.js";
 import initialCards from "./cardsData.js";
 import Card from "./Card.js";
-
-const setupValidation = {
-  inputSelector: ".popup__input", //поля ввода
-  submitButtonSelector: ".popup__button", //кнопка сохранить
-  inactiveButtonClass: "popup__button_invalid", //неактивная кнопка сохранить
-  inputErrorClass: "popup__input_type_error", //поле ввода с ошибкой
-  errorClass: "popup__error_visible", //span с ошибкой
-};
+import setupValidation from "./constants.js";
 
 const formNew = document.querySelector(".popup__form_new");
 const formEdit = document.querySelector(".popup__form_edit");
@@ -72,11 +65,6 @@ function openProfilePopup() {
 const openAddPopup = () => {
   //создаем переменную с функцией
   openPopup(popupAdd); //открыть попап, добавляем аргумент popupAdd(попап Новое место)
-  if (!nameCardInput.value && urlCardInput.value) {
-    //если значение 1 или 2 поля неверны
-    buttonSubmitAdd.classList.add("popup__button_invalid"); //то добавить кнопке класс неактивной кнопки
-    buttonSubmitAdd.setAttribute("disabled", ""); //и отключить ее
-  }
 };
 
 //функции закрытия pop-ups по клику на кнопку Esc или Overlay
@@ -117,7 +105,7 @@ const handleAddCardFormSubmit = (event) => {
   event.preventDefault(); //предотвратить невыполнение условий
   const cardData = { name: nameCardInput.value, link: urlCardInput.value }; //значение введенных данных
 
-  addCard(elementContainer, addNewCard(cardData)); //функция добавить в одно другое(в контейнер добавить карточку с данными)
+  addCard(elementContainer, newCardAdd(cardData)); //функция добавить в одно другое(в контейнер добавить карточку с данными)
 
   event.target.reset(); //после выполнения события вернуть значение
   closePopup(popupAdd); //закрыть попап (Новое место)
@@ -125,23 +113,22 @@ const handleAddCardFormSubmit = (event) => {
 };
 
 //открытие попапа с картинкой
-function imageOpen(data) {
+function openImage(data) {
   popupImage.src = data.link;
   popupImage.alt = data.name;
   popupImageTitle.textContent = data.name;
   openPopup(popupWrapImage);
 }
 
-function addNewCard(item) {
+function newCardAdd(item) {
   //функция создания новой карточки
-  const card = new Card(item, imageOpen, selectorTemplate);
-  const newCard = card.createCard();
-  return newCard;
+  const card = new Card(item, openImage, selectorTemplate);
+  return card.createCard();
 }
 
 initialCards.forEach((item) => {
   //Функция добавить в контейнер все карточки
-  addCard(elementContainer, addNewCard(item));
+  addCard(elementContainer, newCardAdd(item));
 });
 
 function addCard(container, card) {
