@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
     <title>Mesto</title>
   </head>
   <body class="page">
@@ -15,7 +14,7 @@
     </header>
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="images/jak.png" alt="Жак-Ив Кусто" />
+        <img class="profile__avatar" src="<%=require('./images/jak.png')%>" alt="Жак-Ив Кусто" />
         <div class="profile__info">
           <div class="profile__box">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -81,7 +80,7 @@
           <input
             class="popup__input popup__input_name"
             type="text"
-            name="card-title"
+            name="name"
             placeholder="Название"
             minlength="2"
             maxlength="30"
@@ -92,7 +91,7 @@
           <input
             class="popup__input"
             type="url"
-            name="card-link"
+            name="link"
             placeholder="Ссылка на картинку"
             required
             id="link-input"
@@ -107,7 +106,7 @@
       <article class="elements__item element">
         <!--шаблон добавления карточки-->
         <img
-          src="./images/delet.svg"
+          src="<%=require('./images/delet.svg')%>"
           alt="Удалить"
           class="elements__delete-btn"
         />
@@ -123,9 +122,8 @@
       <div class="popup__image-container">
         <img src="#" alt="#" class="popup__image" />
         <p class="popup__image-title"></p>
-        <button type="button" class="popup__close popup-close"></button>
+        <button type="button" class="popup__close"></button>
       </div>
     </section>
-    <script type="module" src="scripts/index.js"></script>
   </body>
 </html>

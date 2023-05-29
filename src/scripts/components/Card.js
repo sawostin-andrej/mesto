@@ -1,8 +1,8 @@
 class Card {
-  constructor(data, openImage, selectorTemplate) {
+  constructor(data, selectorTemplate, openImage) {
     this._data = data;
-    this._openImage = openImage;
     this._selectorTemplate = selectorTemplate;
+    this._openImage = openImage;
   }
 
   _getTemplateCard() {

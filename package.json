@@ -1,0 +1,32 @@
+{
+  "name": "yandex_praktikum",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Andrey Savostin",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.22.1",
+    "@babel/preset-env": "^7.22.2",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.8.1",
+    "cssnano": "^6.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-loader": "^7.3.2",
+    "postcss-preset-env": "^8.4.1",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.84.1",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve --open --mode development"
+  },
+  "dependencies": {
+    "core-js": "^3.30.2"
+  }
+}
