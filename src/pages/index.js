@@ -38,18 +38,20 @@ function sendProfile() {
 
 const popupMesto = new PopupWithForm(popupAdd, sendAdd);
 
-function sendAdd(values) {
+function sendAdd(values) { 
+ section.addItem(createCard(values));
+}
+
+function createCard(values){
   const newCard = new Card(values, selectorTemplate, popupImage.open);
-  const newCardElement = newCard.createCard(values);
-  section.addItem(newCardElement);
+  return newCard.createCard();
 }
 
 const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, selectorTemplate, popupImage.open);
-      return card.createCard();
+      return createCard(item);
     },
   },
   elementContainer
