@@ -6,6 +6,7 @@ export default class UserInfo {
     this._profileSubtitle = document.querySelector(
       configInfo.profileSubtitleSelector
     );
+    this._profileAvatar = document.querySelector(configInfo.profileAvatar);
   }
 
   getUserInfo() {
@@ -15,8 +16,9 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(data) {
-    this._profileTitle.textContent = data.title;
-    this._profileSubtitle.textContent = data.subtitle;
+  setUserInfo({ avatar, title, subtitle }) {
+    this._profileAvatar.src = avatar;
+    this._profileTitle.textContent = title;
+    this._profileSubtitle.textContent = subtitle;
   }
 }
