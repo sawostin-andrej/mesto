@@ -11,14 +11,9 @@ export default class PopupCardDelete extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      //   this._submitButton.textContent = `${this._submitButton.textContent}...`
       this._submitFunction({ card: this._element, cardId: this._cardId });
     });
   }
-
-  //   changeTextButton() {
-  //     this._submitButton.textContent = this._defaultTextButton;
-  //   }
 
   open = ({ card, cardId }) => {
     super.open();
