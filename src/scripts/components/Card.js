@@ -20,7 +20,7 @@ class Card {
   }
 
   _actionLike = () => {
-    this._changeLike(this._likeButton, this._cardId);
+    this._changeLike(this._cardId, this.isLiked);
   };
 
   _actionPopupWrapImage = () => {
@@ -53,9 +53,14 @@ class Card {
     this._numberLikes.textContent = this._likesLength;
   }
 
-  toggleLike(likes) {
-    this._likeButton.classList.toggle("element__like_active");
-    this._numberLikes.textContent = likes.length;
+  toggleLike(data) {
+    this.isLiked = !this.isLiked;
+    this._numberLikes.textContent = data.likes.length;
+    if (this.isLiked) {
+      this._likeButton.classList.add("element__like_active");
+    } else {
+      this._likeButton.classList.remove("element__like_active");
+    }
   }
 
   removeCard() {

@@ -11,14 +11,16 @@ export default class UserInfo {
 
   getUserInfo() {
     return {
+      userId: this._profileUserId,
       title: this._profileTitle.textContent,
       subtitle: this._profileSubtitle.textContent,
     };
   }
 
-  setUserInfo({ avatar, title, subtitle }) {
+  setUserInfo({ userId, avatar, title, subtitle }) {
     this._profileAvatar.src = avatar;
     this._profileTitle.textContent = title;
     this._profileSubtitle.textContent = subtitle;
+    this._profileUserId = userId;
   }
 }

@@ -52,9 +52,9 @@ const popupDeleteCard = new PopupCardDelete(
       .deleteCard(cardId)
       .then(() => {
         card.removeCard();
+        popupDeleteCard.close();
       })
       .catch((error) => console.error(`Ошибка при удалении карточки ${error}`));
-    popupDeleteCard.close();
   }
 );
 
@@ -74,9 +74,11 @@ const profilePopup = new PopupWithForm(popupProfile, (data) => {
 });
 
 const popupMesto = new PopupWithForm(popupAdd, (data) => {
-  Promise.all([api.getinfo(), api.addCard(data)])
-    .then(([dataUser, dataCard]) => {
-      dataCard.myid = dataUser._id;
+  api
+    .addCard(data)
+    .then((dataCard) => {
+      const dataUser = userInfo.getUserInfo();
+      dataCard.myid = dataUser.userId;
       section.addItem(createCard(dataCard));
       popupMesto.close();
     })
@@ -92,24 +94,15 @@ function createCard(values) {
     selectorTemplate,
     popupImage.open,
     popupDeleteCard.open,
-    (likeElement, cardId) => {
-      if (likeElement.classList.contains("element__like_active")) {
-        api
-          .deleteLike(cardId)
-          .then((res) => {
-            // console.log(res)
-            newCard.toggleLike(res.likes);
-          })
-          .catch((error) => console.error(`Ошибка удаления лайка ${error}`));
-      } else {
-        api
-          .addLike(cardId)
-          .then((res) => {
-            // console.log(res)
-            newCard.toggleLike(res.likes);
-          })
-          .catch((error) => console.error(`Ошибка добавления лайка ${error}`));
-      }
+    (cardId, isLiked) => {
+      api
+        .likeCard(cardId, isLiked)
+        .then((data, isLiked) => {
+          newCard.toggleLike(data, isLiked);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   );
   return newCard.createCard();
@@ -160,6 +153,7 @@ Promise.all([api.getinfo(), api.getInitialCards()])
   .then(([dataUser, dataCard]) => {
     dataCard.forEach((element) => (element.myid = dataUser._id));
     userInfo.setUserInfo({
+      userId: dataUser._id,
       title: dataUser.name,
       subtitle: dataUser.about,
       avatar: dataUser.avatar,
