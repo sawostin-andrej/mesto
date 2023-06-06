@@ -66,6 +66,7 @@ const profilePopup = new PopupWithForm(popupProfile, (data) => {
         title: res.name,
         subtitle: res.about,
         avatar: res.avatar,
+        userId: res._id,
       });
       profilePopup.close();
     })
@@ -94,11 +95,11 @@ function createCard(values) {
     selectorTemplate,
     popupImage.open,
     popupDeleteCard.open,
-    (cardId, isLiked) => {
+    (cardId) => {
       api
-        .likeCard(cardId, isLiked)
-        .then((data, isLiked) => {
-          newCard.toggleLike(data, isLiked);
+        .likeCard(cardId)
+        .then((data) => {
+          newCard.toggleLike(data);
         })
         .catch((err) => {
           console.log(err);
@@ -120,6 +121,7 @@ const popupEditAvatar = new PopupWithForm(popupAvatarSelector, (data) => {
         title: res.name,
         subtitle: res.about,
         avatar: res.avatar,
+        userId: res._id,
       });
       popupEditAvatar.close();
     })
